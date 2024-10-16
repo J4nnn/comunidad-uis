@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=EnviarInformacion
+comment1.params=
+comment1.target=EnviarInformacion()
+comment10.params=contenido
+comment10.target=void\ setContenido(java.lang.String)
+comment2.params=grupo\ destinatarios\ asunto\ contenido
+comment2.target=EnviarInformacion(Grupo,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment3.params=
+comment3.target=Grupo\ getGrupo()
+comment4.params=grupo
+comment4.target=void\ setGrupo(Grupo)
+comment5.params=
+comment5.target=java.util.ArrayList\ getDestinatarios()
+comment6.params=destinatarios
+comment6.target=void\ setDestinatarios(java.util.ArrayList)
+comment7.params=
+comment7.target=java.lang.String\ getAsunto()
+comment8.params=asunto
+comment8.target=void\ setAsunto(java.lang.String)
+comment9.params=
+comment9.target=java.lang.String\ getContenido()
+numComments=11
