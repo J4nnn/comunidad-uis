@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=AdministradorGrupo
+comment1.params=
+comment1.target=void\ crearGrupo()
+comment2.params=grupo
+comment2.target=void\ eliminarGrupo(Grupo)
+comment3.params=grupo
+comment3.target=void\ editarGrupo(Grupo)
+comment4.params=mensaje
+comment4.target=void\ enviarCorreo(EnviarInformacion)
+numComments=5
