@@ -1,0 +1,57 @@
+body,html{
+  margin: 0;
+}
+
+h1{
+  text-align: left;
+  padding-left: 1%;
+
+}
+
+.grupos-container{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.grupo-item {
+  align-items: center;
+  background-color: #E3EED4;
+  width: 100%; /* El ancho de cada caja es 100% del contenedor de la celda del grid */
+  aspect-ratio: 1;
+  position: relative; /* Necesario para que el padding se aplique correctamente */
+  border-radius: 15px;
+  text-align: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #eaf8e7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+}
+
+.App-link {
+  color: #61dafb;
+}
