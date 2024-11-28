@@ -1,24 +1,20 @@
 import './App.css';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeDescubreGrupos from './pages/HomeDescubreGrupos';
+import MisGrupos from './pages/MisGrupos';
+import Login from './pages/Login';
 
 function App() {
-  return (
-    <div className="App">
-      <div>
-      <Navbar />
-      </div>
-      <div className="title-container"> 
-        <h1>Puede ser de tu interés</h1>
-      </div>
+  return(
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeDescubreGrupos />} />
+        <Route path="/mis-grupos" element={<MisGrupos />} />  
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
 
-      <div className="grupos-container">
-        <div className="grupo-item">Ajedrez</div>
-        <div className="grupo-item">Debate</div>
-        <div className="grupo-item">Fútbol</div>
-        <div className="grupo-item">Ciencias</div>
-      </div>
-    </div>
-  );
-}
+  ); 
+};
 
 export default App;
