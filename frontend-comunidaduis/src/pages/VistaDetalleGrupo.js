@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar";
 // Aqui aparece la vista detallada del grupo, con la imagen, la descripcion, 
 // los horarios y el boton de "suscribirse" o "unirse al grupo"
 
