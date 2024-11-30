@@ -21,6 +21,11 @@ class GroupSerializer(serializers.ModelSerializer):
         model = Group
         fields = '__all__'
 
+class UserGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserGroup
+        fields = '__all__'
+
 class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
