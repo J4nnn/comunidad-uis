@@ -50,8 +50,8 @@ class Announcement(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     cover = models.ImageField()
     description = models.TextField()
-    creation_date = models.DateTimeField()
-    expiration_date = models.DateTimeField()
+    creation_date = models.CharField()
+    expiration_date = models.CharField()
 
     def __str__(self):
         return f'{self.publisher} - {self.group}'
