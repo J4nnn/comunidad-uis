@@ -13,7 +13,7 @@ return (
       <div>
       <Navbar />
       </div>
-      <a>crear grupo</a>
+      <p>crear grupo</p>
 
     </div>
   );

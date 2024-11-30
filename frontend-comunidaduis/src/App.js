@@ -10,7 +10,7 @@ import AdminNuevoGrupo from './pages/Admin/AdminNuevoGrupo';
 import AdminUsuariosInscritos from './pages/Admin/AdminUsuariosInscritos';
 
 function App() {
-  return(
+  return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeDescubreGrupos />} />
@@ -23,8 +23,7 @@ function App() {
         <Route path="/usuarios-inscritos" element={<AdminUsuariosInscritos />} />
       </Routes>
     </Router>
-
-  ); 
-};
+  );
+}
 
 export default App;

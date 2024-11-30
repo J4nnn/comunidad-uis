@@ -6,7 +6,7 @@ return (
       <div>
       <Navbar />
       </div>
-      <a>crear aviso</a>
+      <p>crear aviso</p>
 
     </div>
   );

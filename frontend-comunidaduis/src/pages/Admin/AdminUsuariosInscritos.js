@@ -10,7 +10,7 @@ return (
       <div>
       <Navbar />
       </div>
-      <a>Usuarios inscritos</a>
+      <p>Usuarios inscritos</p>
 
     </div>
   );

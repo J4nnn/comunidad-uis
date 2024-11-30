@@ -14,7 +14,7 @@ return (
       <Navbar />
       </div>
 
-      <a>Mis grupos</a>
+      <p>Mis grupos como admin</p>
     </div>
   );
 };

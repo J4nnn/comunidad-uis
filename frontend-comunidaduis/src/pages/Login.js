@@ -1,6 +1,9 @@
-import Navbar from '../components/Navbar';
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
 const Login = () =>{
+    const navigate = useNavigate();
     const [userType, setUserType] = useState('Admin');
   
     const defaultValues = (type) => {
@@ -43,10 +46,13 @@ const Login = () =>{
       };
   
       if (userType === "Admin") {
-        console.log("esto es un administrador")
-  
+        console.log("esto es un administrador", data)
+        sessionStorage.setItem('usertype', userType)
+        navigate('/');
       } else {
-        console.log("esto es un estudiante")
+        console.log("esto es un estudiante", data)
+        sessionStorage.setItem('usertype', userType)
+        navigate('/');
       }
     };
   
