@@ -18,3 +18,7 @@ class UserView(viewsets.ModelViewSet):
 class GroupView(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     queryset = Group.objects.all()
+
+class AnnouncementView(viewsets.ModelViewSet):
+    serializer_class = AnnouncementSerializer
+    queryset = Announcement.objects.all()
