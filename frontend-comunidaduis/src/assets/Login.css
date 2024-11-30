@@ -1,0 +1,65 @@
+/* Estilos generales para el contenedor */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Para que el contenedor ocupe toda la pantalla */
+  }
+  
+  /* Estilos para el formulario de login */
+  .login-form {
+    background-color: #E3EED4; /* Fondo blanco para el formulario */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Limita el ancho máximo del formulario */
+  }
+  
+  /* Estilo para cada campo del formulario */
+  .login-field {
+    margin-bottom: 20px;
+  }
+  
+  .login-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  
+
+  .login-field input,
+  .login-field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .login-field input{
+    width: 94%;
+  }
+  
+  .login-field input:focus,
+  .login-field select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Estilo para el botón */
+  .login-field button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* Azul para el botón */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-field button:hover {
+    background-color: #0056b3; /* Azul oscuro al hacer hover */
+  }

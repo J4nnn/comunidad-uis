@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
-import '../../assets/AdminNuevoGrupo.css';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-// Creación de grupos (realente es sencilla la interfaz), lo que necesito son espacios llenados por el admin, 
-// como Nombre del grupo, subir una imagen del grupo (como una portada), descripción, horario, ubicación,
-// cantidad de cupos, y la escuela a  la que pertence, por ejemplo si es un grupo de debate, puede ser
-// de la escuela de derecho 
+const AdminEditaGrupo = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-const AdminNuevoGrupo = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -17,6 +15,23 @@ const AdminNuevoGrupo = () => {
     creator: sessionStorage.getItem('id_user'),
     school: '',
   });
+
+  useEffect((e) => {
+    const fetchGrupo = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/groups/${id}/`);
+        if (!response.ok) {
+          throw new Error('Error al obtener los detalles del grupo');
+        }
+        const data = await response.json();
+        setFormData(data); // Almacenar los detalles del grupo en el estado
+      } catch (e) {
+        console.log("Algo salió mal")
+      }
+    };
+
+    fetchGrupo();
+  }, [id]); // Volver a ejecutar cuando el id cambie
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,8 +48,8 @@ const AdminNuevoGrupo = () => {
       
     }
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/groups/', {
-        method: 'POST',
+      const response = await fetch(`http://127.0.0.1:8000/api/groups/${id}/`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -42,13 +57,15 @@ const AdminNuevoGrupo = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Error al crear el grupo');
+        throw new Error('Error al actualizar el grupo');
       }
 
-      alert('Grupo creado exitosamente');
+      alert('Grupo actualizado exitosamente');
+      navigate('/');
+
     } catch (error) {
       console.error('Error:', error);
-      alert('Hubo un error al crear el grupo');
+      alert('Hubo un error al actualizar el grupo');
     }
   };
 
@@ -74,7 +91,6 @@ const AdminNuevoGrupo = () => {
 
       fetchSchools();
     }, []);
-
   return (
     <div className="App">
       <Navbar />
@@ -163,12 +179,11 @@ const AdminNuevoGrupo = () => {
             )}
           </label>
 
-          <button type="submit">Crear Grupo</button>
+          <button type="submit">Actualizar Grupo</button>
         </form>
       </div>
     </div>
   );
+
 };
-
-export default AdminNuevoGrupo;
-
+export default AdminEditaGrupo;

@@ -1,0 +1,49 @@
+.nuevo-grupo-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nuevo-grupo-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .nuevo-grupo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nuevo-grupo-form label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .nuevo-grupo-form input,
+  .nuevo-grupo-form textarea,
+  .nuevo-grupo-form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .nuevo-grupo-form button {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .nuevo-grupo-form button:hover {
+    background-color: #45a049;
+  }

@@ -1,100 +1,126 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import '../assets/Login.css';
 
-const Login = () =>{
-    const navigate = useNavigate();
-    const [userType, setUserType] = useState('Admin');
-  
-    const defaultValues = (type) => {
-      return type === 'Estudiante' ?
-        {
-          correo_electronico: 'user@gmail.com',
-          contrasena: 'user123',
-        } :
-        {
-          correo_electronico: 'admin@gmail.com',
-          contrasena: 'admin123',
-        };
-    };
-  
-    const [usuario, setUsuario] = useState(defaultValues(userType));
-  
-    useEffect(() => {
-      setUsuario(defaultValues(userType));
-    }, [userType]);
-  
-    const { correo_electronico, contrasena } = usuario;
-  
-    const setUser = (e) => {
-      setUsuario({
-        ...usuario,
-        [e.target.name]: e.target.value,
-      });
-    };
-  
-    const Login = async (e) => {
-      e.preventDefault();
-      if (!correo_electronico || !contrasena) {
-        alert('Por favor, complete todos los campos.');
-        return;
+const Login = () => {
+  const navigate = useNavigate();
+  // Estado para el tipo de usuario
+  const [userType, setUserType] = useState('Estudiante1');
+  // Estado para los datos del usuario
+  const [usuario, setUsuario] = useState("");
+
+  // Función para obtener los valores predeterminados del usuario según el tipo
+  const fetchUserData = async (type) => {
+    const userId = type === 'Estudiante1' ? 1 : 2; // Determinar el ID del usuario según el tipo
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/users/${userId}/`);
+      if (!response.ok) {
+        throw new Error(`Error al obtener los datos: ${response.statusText}`);
       }
-  
-      const data = {
-        correo_electronico: usuario.correo_electronico,
-        contrasena: usuario.contrasena,
-      };
-  
-      if (userType === "Admin") {
-        console.log("esto es un administrador", data)
-        sessionStorage.setItem('usertype', userType)
-        navigate('/');
-      } else {
-        console.log("esto es un estudiante", data)
-        sessionStorage.setItem('usertype', userType)
-        navigate('/');
-      }
+      const userData = await response.json();
+
+      console.log(userData);
+      return userData;
+    } catch (error) {
+      console.error("Error al obtener los datos del usuario:", error);
+      return null;
+    }
+  };
+
+  // useEffect para cargar los datos del usuario según el tipo
+  useEffect(() => {
+    const loadUserData = async () => {
+      const data = await fetchUserData(userType); // Esperar a que se resuelvan los datos
+      setUsuario(data); // Actualizar el estado con los datos obtenidos
     };
-  
-    return (
-      <div>
-        <Navbar />
-        <form onSubmit={Login} className="form">
-          <h2>Login</h2> {/* Título agregado */}
-          <div>
-            <label>Correo electronico:</label>
-            <input
-              type="email"
-              name='correo_electronico'
-              value={correo_electronico}
-              onChange={setUser}
-              required
-            />
+    loadUserData();
+  }, [userType]); // Se ejecuta cada vez que `userType` cambia
+
+  // Función para manejar los cambios en los campos del formulario
+  const setUser = (e) => {
+    setUsuario((prevUsuario) => ({
+      ...prevUsuario,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Función de manejo de inicio de sesión
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (!usuario?.email || !usuario?.password) {
+      alert('Por favor, complete todos los campos.');
+      return;
+    }
+
+    const data = {
+      email: usuario.email,
+      password: usuario.password,
+      id: usuario.id
+    };
+
+    if (userType === "Estudiante1") {
+      console.log("Este es Janner", data);
+    } else {
+      console.log("Esta es Fabi", data);
+    }
+
+    sessionStorage.setItem('usertype', userType);
+    sessionStorage.setItem('id_user', data.id);
+    sessionStorage.setItem('name', usuario.name);
+
+    navigate('/');
+  };
+
+  return (
+    <div>
+      <Navbar />
+      <div className="login-container">
+
+        <form onSubmit={handleLogin} className="login-form">
+          <div className="login-box">
+            <div className="login-field">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={usuario.email}
+                onChange={setUser}
+                placeholder="Ingresa tu email"
+              />
+            </div>
+            <div className="login-field">
+              <label htmlFor="password">Contraseña:</label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                value={usuario.password}
+                onChange={setUser}
+                placeholder="Ingresa tu contraseña"
+              />
+            </div>
+            <div className="login-field">
+              <label htmlFor="userType">Tipo de Usuario:</label>
+              <select
+                id="userType"
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+              >
+                <option value="Estudiante1">Estudiante1</option>
+                <option value="Estudiante2">Estudiante2</option>
+              </select>
+            </div>
+            <div className="login-field">
+              <button type="submit">Iniciar Sesión</button>
+            </div>
           </div>
-          <div>
-            <label>Contraseña:</label>
-            <input
-              type="text"
-              name='contrasena'
-              value={contrasena}
-              onChange={setUser}
-              required
-            />
-          </div>
-          <div>
-            <label>Tipo de Usuario:</label>
-            <select
-              value={userType}
-              onChange={(e) => setUserType(e.target.value)}
-            >
-              <option value="Admin">Admin</option>
-              <option value="Estudiante">Estudiante</option>
-            </select>
-          </div>
-          <button type="submit" className="btn btn-primary">Login</button>
         </form>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Login;
