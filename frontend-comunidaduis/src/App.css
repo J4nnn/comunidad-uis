@@ -8,7 +8,7 @@ h1{
 
 }
 
-.grupos-container{
+.grupos-container-home{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 20px;
@@ -17,8 +17,20 @@ h1{
   width: 65%;
   margin: 0 auto;
 }
+@media (max-width: 900px) {
+  .grupos-container-home {
+    width: 85%; /* Ajusta el ancho para aprovechar más el espacio */
+  }
+}
+@media (max-width: 700px) {
+  .grupos-container-home {
+    grid-template-columns: repeat(1, 1fr); /* Una columna */
+    width: 90%; /* Ajusta el ancho para aprovechar más el espacio */
+    justify-content: center; /* Centra los elementos en pantallas pequeñas */
+  }
+}
 
-.grupo-item {
+.grupo-item-home {
   align-items: center;
   background-color: #E3EED4;
   width: 100%; /* El ancho de cada caja es 100% del contenedor de la celda del grid */
@@ -30,6 +42,10 @@ h1{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
+}
+.grupo-item-home:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .App {

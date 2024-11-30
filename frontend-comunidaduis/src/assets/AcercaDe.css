@@ -1,0 +1,11 @@
+.align-center {
+    display: flex;
+    flex-direction: column; /* Esto es opcional dependiendo de si quieres alinear en columna o fila */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    background-color: rgb(230, 253, 223);
+    padding: 10px;
+    margin: 5%;
+    margin-top: 30px;
+    border-radius: 10px;
+  }
