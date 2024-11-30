@@ -41,9 +41,9 @@ class GroupView(viewsets.ModelViewSet):
             except UserGroup.DoesNotExist:
                 return Response({'mensaje': 'No estás suscrito a este grupo'}, status=status.HTTP_400_BAD_REQUEST)'''
 
-    @action(detail=False, methods=['get'])
-    def subscribed(self, request):
-        user_id = request.query_params.get('user_id')
+    @action(detail=False, methods=['get'], url_path='subscribed/(?P<user_id>[^/.]+)')
+    def subscribed(self, request, user_id = None):
+        # user_id = request.query_params.get('user_id')
         if not user_id:
             return Response({"error": "user_id is required"}, status=400)
 
