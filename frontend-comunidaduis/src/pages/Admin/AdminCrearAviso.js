@@ -20,26 +20,27 @@ const AdminCrearAviso = () => {
     const avisoData = {
       cover,
       description,
-      creation_date: creationDate,
-      expiration_date: expirationDate,
+      creation_date: String(creationDate),
+      expiration_date: String(expirationDate),
       publisher,
       group,
     };
 
     try {
+      console.log(avisoData)
       const response = await fetch('http://127.0.0.1:8000/api/announcements/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(avisoData),
+        body: avisoData,
       });
 
       if (!response.ok) {
+        console.log(response)
         throw new Error('Error al crear el aviso');
       }
 
-      const data = await response.json();
       setMessage('Aviso creado exitosamente');
       // Limpiar los campos después de enviar el formulario
       setCover('');
