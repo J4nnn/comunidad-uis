@@ -29,18 +29,8 @@ All of this technologies were used in the development of the project and are nee
 2. Install Backend dependencies: `cd backend && pip install -r requirements.txt`
 3. Install Frontend dependencies: `cd frontend-comunidaduis && npm install`
 4. Set up the database:
-    1. Configure the database connection in `backend/settings.py`
-        - Open your `settings.py` file and find the `DATABASES` and modify the default configuration to look like this:
-        `DATABASES = {
-	    	'default': {
-        		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        		'NAME': 'your_database_name',
-        		'USER': 'your_database_user',
-        		'PASSWORD': 'your_database_password',
-        		'HOST': 'localhost',
-        		'PORT': '5432', # Default PostgreSQL start
-		    }
-		}`
+    1. Open your `settings.py` file and find the `DATABASES` and modify the default configuration to look like this:
+        `DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2','NAME': 'your_database_name', 'USER': 'your_database_user', 'PASSWORD': 'your_database_password', 'HOST': 'localhost', 'PORT': '5432', # Default PostgreSQL start }}`
 
 5. Migrate Django models: `python manage.py makemigrations && python manage.py migrate`
 
