@@ -3,7 +3,7 @@ from core.serializer import *
 from core.models import *
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from core.permissions import IsCreatorOrReadOnly
+from django.db.models import Q
 
 # Create your views here.
 
@@ -33,10 +33,46 @@ class GroupView(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     # permission_classes = [IsCreatorOrReadOnly]
+    @action(detail=True, methods=['get'])
+    def members(self, request, pk=None):
+        group = self.get_object()
+
+        # Get members (from UserGroup) and the creator
+        members = User.objects.filter(Q(usergroup__group=group) | Q(pk=group.creator.id))
+
+        serializer = UserSerializer(members, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['get'])
+    def announcements(self, request, pk=None):
+        group = self.get_object()
+        announcements = Announcement.objects.filter(group=group)
+        serializer = AnnouncementSerializer(announcements, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'], url_path='member_announcements/(?P<user_id>[^/.]+)')
+    def member_announcements(self, request, user_id=None):
+        announcements = Announcement.objects.filter(group__usergroup__user=user_id)
+        serializer = AnnouncementSerializer(announcements, many=True)
+        return Response(serializer.data)
 
 class UserGroupView(viewsets.ModelViewSet):
     serializer_class = UserGroupSerializer
     queryset = UserGroup.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        group_id = serializer.validated_data['group'].id
+        group = Group.objects.get(pk=group_id)
+
+        if group.quota is not None and (group.usergroup_set.count() + 1) >= group.quota:
+            return Response({"error": "Límite de miembros alcanzado"}, status=status.HTTP_400_BAD_REQUEST)
+
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class AnnouncementView(viewsets.ModelViewSet):
     serializer_class = AnnouncementSerializer
