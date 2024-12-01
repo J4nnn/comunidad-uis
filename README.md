@@ -34,9 +34,9 @@ All of this technologies were used in the development of the project and are nee
    	DATABASES = {
   		    'default': {
        	    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       	    'NAME': 'your_database_name',
-       	    'USER': 'your_database_user',
-       	    'PASSWORD': 'your_database_password',
+       	    'NAME': 'your_database_name', # The name you gave your database when you created it.
+       	    'USER': 'your_database_user', # The username with access to the database.
+       	    'PASSWORD': 'your_database_password', # The password for that user.
        	    'HOST': 'localhost',
        	    'PORT': '5432',  # Default PostgreSQL port
        	}
