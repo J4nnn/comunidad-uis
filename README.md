@@ -6,9 +6,7 @@
 # HOW TO START THIS PROJECT:
 All of this technologies were used in the development of the project and are needed to start it.
 - PostgreSQL
-- DBeaver
 - Django
-- Visual Studio Code
 - Node.js
 - React
 
