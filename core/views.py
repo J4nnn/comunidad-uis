@@ -3,6 +3,7 @@ from core.serializer import *
 from core.models import *
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from core.permissions import IsCreatorOrReadOnly
 
 # Create your views here.
 
@@ -21,26 +22,6 @@ class GroupView(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     queryset = Group.objects.all()
 
-    '''@action(detail=True, methods=['post', 'delete'])
-    def subscribe(self, request, pk=None):
-        group = self.get_object()
-        user = request.user
-
-        if request.method == 'POST':
-            serializer = UserGroupSerializer(data={'user': user.pk, 'group': group.pk})
-            if serializer.is_valid():
-                serializer.save()
-                return Response({'mensaje': 'Te has suscrito a grupo'}, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        elif request.method == 'DELETE':
-            try:
-                user_group = UserGroup.objects.get(user=user, group=group)
-                user_group.delete()
-                return Response({'mensaje': 'Te has desuscrito de este grupo'}, status=status.HTTP_204_NO_CONTENT)
-            except UserGroup.DoesNotExist:
-                return Response({'mensaje': 'No estás suscrito a este grupo'}, status=status.HTTP_400_BAD_REQUEST)'''
-
     @action(detail=False, methods=['get'], url_path='subscribed/(?P<user_id>[^/.]+)')
     def subscribed(self, request, user_id = None):
         # user_id = request.query_params.get('user_id')
@@ -51,6 +32,8 @@ class GroupView(viewsets.ModelViewSet):
         serializer = GroupSerializer(groups, many=True)
         return Response(serializer.data)
 
+    # permission_classes = [IsCreatorOrReadOnly]
+
 class UserGroupView(viewsets.ModelViewSet):
     serializer_class = UserGroupSerializer
     queryset = UserGroup.objects.all()
@@ -58,3 +41,4 @@ class UserGroupView(viewsets.ModelViewSet):
 class AnnouncementView(viewsets.ModelViewSet):
     serializer_class = AnnouncementSerializer
     queryset = Announcement.objects.all()
+    # permission_classes = [IsCreatorOrReadOnly]
