@@ -95,7 +95,7 @@ const AdminEditaGrupo = () => {
     <div className="App">
       <Navbar />
       <div className="nuevo-grupo-container">
-        <h1>Crear Nuevo Grupo</h1>
+        <h1>Actualizar Grupo</h1>
         <form onSubmit={handleSubmit} className="nuevo-grupo-form">
           {/* Nombre del grupo */}
           <label>

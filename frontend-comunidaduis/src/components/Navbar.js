@@ -4,7 +4,7 @@ import '../assets/Navbar.css';
 
 const Navbar = () => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState('');
 

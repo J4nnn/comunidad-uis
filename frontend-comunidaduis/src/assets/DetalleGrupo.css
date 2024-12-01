@@ -55,4 +55,33 @@
       margin-bottom: 20px;
     }
   }
-  
+  .usuarios-inscritos-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 91%;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.lista-usuarios {
+    list-style-type: none;
+    padding: 0;
+}
+
+.usuario-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.usuario-item p {
+    margin: 5px 0;
+}
+
+.usuario-item strong {
+    font-size: 16px;
+    color: #333;
+}

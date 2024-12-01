@@ -10,6 +10,7 @@ import AdminNuevoGrupo from './pages/Admin/AdminNuevoGrupo';
 import AdminUsuariosInscritos from './pages/Admin/AdminUsuariosInscritos';
 import AcercaDe from './pages/AcercaDe';
 import AdminEditaGrupo from './pages/Admin/AdminEditaGrupo';
+import AdminDetalleGrupo from './pages/Admin/AdminDetalleGrupo';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/grupos-admin/:id" element={<AdminMisGrupos />} />  
         <Route path="/crear-grupo" element={<AdminNuevoGrupo />} />
         <Route path="/usuarios-inscritos" element={<AdminUsuariosInscritos />} />
+        <Route path='/detalle-grupo-admin/:id' element={<AdminDetalleGrupo />} />
         <Route path="/acerca-de" element={<AcercaDe />} />
         
       </Routes>

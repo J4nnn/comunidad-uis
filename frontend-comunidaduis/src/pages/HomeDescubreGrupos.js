@@ -5,14 +5,13 @@ import '../App.css';
 
 const HomeDescubreGrupos = () => {
   const navigate = useNavigate();
-  // Estado para almacenar los grupos
-  const [grupos, setGrupos] = useState([]);
-  const [loading, setLoading] = useState(true); // Para manejar el estado de carga
-  const [error, setError] = useState(null); // Para manejar errores
+  const userId = parseInt(sessionStorage.getItem('id_user'), 10); // Obtener el ID del usuario desde sessionStorage
 
-  // Usamos useEffect para hacer la solicitud al API cuando el componente se monte
+  const [grupos, setGrupos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    // Función para obtener los grupos desde el API
     const fetchGrupos = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/groups/');
@@ -20,20 +19,25 @@ const HomeDescubreGrupos = () => {
           throw new Error('Error al obtener los grupos');
         }
         const data = await response.json();
-        setGrupos(data); // Almacenar los grupos en el estado
+
+        // Filtrar los grupos para excluir aquellos donde el usuario sea el líder (creator)
+        const gruposFiltrados = data.filter((grupo) => grupo.creator !== userId);
+
+        setGrupos(gruposFiltrados);
       } catch (error) {
-        setError(error.message); // Si hay error, guardamos el mensaje
+        setError(error.message);
       } finally {
-        setLoading(false); // Terminamos de cargar
+        setLoading(false);
       }
     };
 
-    fetchGrupos(); // Llamamos a la función para obtener los grupos
-  }, []); // El array vacío asegura que esto solo se ejecute una vez al montar el componente
+    fetchGrupos();
+  }, [userId]); // Ejecutar efecto cuando cambie el ID del usuario
 
   function goToDetalle(grupoId) {
     navigate(`/detalle-grupo/${grupoId}`);
-  };
+  }
+
   return (
     <div className="App">
       <div>
@@ -43,19 +47,17 @@ const HomeDescubreGrupos = () => {
         <h1>Puede ser de tu interés</h1>
       </div>
 
-      {/* Mostrar mensaje de carga o error */}
       {loading && <div>Cargando...</div>}
       {error && <div>Error: {error}</div>}
 
       <div className="grupos-container-home">
-        {/* Renderizar los grupos si están disponibles */}
         {grupos.length > 0 ? (
           grupos.map((grupo) => (
-            <div 
-              className="grupo-item-home" 
-              key={grupo.id} 
-              onClick={() => goToDetalle(grupo.id)} // Pasar el id del grupo
-              style={{cursor: 'pointer'}} // Añadir estilo de cursor para indicar que es un botón
+            <div
+              className="grupo-item-home"
+              key={grupo.id}
+              onClick={() => goToDetalle(grupo.id)}
+              style={{ cursor: 'pointer' }}
             >
               <h2>{grupo.name}</h2>
             </div>

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import '../../assets/AdminNuevoGrupo.css';
+import { useNavigate } from 'react-router-dom';
 
-// Creación de grupos (realente es sencilla la interfaz), lo que necesito son espacios llenados por el admin, 
+// Creación de grupos (realmente es sencilla la interfaz), lo que necesito son espacios llenados por el admin, 
 // como Nombre del grupo, subir una imagen del grupo (como una portada), descripción, horario, ubicación,
 // cantidad de cupos, y la escuela a  la que pertence, por ejemplo si es un grupo de debate, puede ser
 // de la escuela de derecho 
 
 const AdminNuevoGrupo = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -46,6 +48,7 @@ const AdminNuevoGrupo = () => {
       }
 
       alert('Grupo creado exitosamente');
+      navigate('/')
     } catch (error) {
       console.error('Error:', error);
       alert('Hubo un error al crear el grupo');
