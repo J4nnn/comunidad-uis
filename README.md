@@ -28,11 +28,23 @@ All of this technologies were used in the development of the project and are nee
 1. Clone the repository: `git clone https://github.com/J4nnn/comunidad-uis.git`
 2. Install Backend dependencies: `cd backend && pip install -r requirements.txt`
 3. Install Frontend dependencies: `cd frontend-comunidaduis && npm install`
-4. Set up the database:
-    1. Open your `settings.py` file and find the `DATABASES` and modify the default configuration to look like this:
-        `DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2','NAME': 'your_database_name', 'USER': 'your_database_user', 'PASSWORD': 'your_database_password', 'HOST': 'localhost', 'PORT': '5432', # Default PostgreSQL start }}`
+1. Open your `settings.py` file and find the `DATABASES` section. Modify the default configuration to look like this:
 
-5. Migrate Django models: `python manage.py makemigrations && python manage.py migrate`
+   ```python
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'your_database_name',
+           'USER': 'your_database_user',
+           'PASSWORD': 'your_database_password',
+           'HOST': 'localhost',
+           'PORT': '5432',  # Default PostgreSQL port
+       }
+   }
+	2. Create the database (if it doesn't exist):
+		- Before running migrations, you need to create the database in PostgreSQL.
+You can do this using the `psql` command-line tool, a GUI like pgAdmin, or other database management tools.
+5. Run migrations, this creates the tables in the database: `python manage.py makemigrations && python manage.py migrate`
 
 
 # Guia para despliegue (local)
