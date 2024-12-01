@@ -44,7 +44,7 @@
   
   .login-field input:focus,
   .login-field select:focus {
-    border-color: #007bff;
+    border-color: #36fd47;
     outline: none;
   }
   
@@ -52,7 +52,7 @@
   .login-field button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff; /* Azul para el botón */
+    background-color: #4CAF50; /* Azul para el botón */
     color: white;
     border: none;
     border-radius: 4px;
@@ -61,5 +61,5 @@
   }
   
   .login-field button:hover {
-    background-color: #0056b3; /* Azul oscuro al hacer hover */
+    background-color: #357c38; /* Azul oscuro al hacer hover */
   }

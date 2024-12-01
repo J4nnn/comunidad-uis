@@ -70,7 +70,6 @@ const AdminMisGrupos = () => {
                 <div className="grupo-actions">
                   <Link to={`/detalle-grupo-admin/${grupo.id}`} className='btn'>Detalles</Link>
                   <Link to={`/editar-grupo/${grupo.id}`} className="btn">Editar</Link>
-                  <Link to={`/crear-aviso/${grupo.id}`} className="btn">Crear aviso</Link>
                   <Link onClick={() => DeleteGroup(grupo.id)} className="btn-delete btn">Eliminar</Link>
                 </div>
               </div>

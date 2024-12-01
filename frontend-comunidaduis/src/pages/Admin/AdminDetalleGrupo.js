@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import '../../assets/DetalleGrupo.css'
 import ImageLogo from '../../assets/favicon-comunidaduis.png';
@@ -8,6 +8,7 @@ const AdminDetalleGrupo = () => {
     const { id } = useParams(); // Extraemos el id de la URL
     const [grupo, setGrupo] = useState("");
     const [usuariosInscritos, setUsuariosInscritos] = useState([]);
+    const [avisos, setAvisos] = useState([]); // Estado para almacenar los avisos del grupo
 
     useEffect((e) => {
         const fetchGrupo = async () => {
@@ -59,10 +60,40 @@ const AdminDetalleGrupo = () => {
                 console.log('Error al obtener los usuarios inscritos');
             }
         };
+        const fetchAvisos = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/announcements/');
+                if (!response.ok) {
+                    throw new Error('Error al obtener los avisos');
+                }
+                const data = await response.json();
+
+                // Filtrar los avisos que corresponden al grupo actual
+                const avisosDelGrupo = data.filter((aviso) => aviso.group === parseInt(id));
+                setAvisos(avisosDelGrupo);
+            } catch (e) {
+                console.log('Error al obtener los avisos del grupo');
+            }
+        };
 
         fetchGrupo();
         fetchUsuariosInscritos();
+        fetchAvisos();
     }, [id]); // Volver a ejecutar cuando el id cambie
+
+    const BorrarAviso = async (idAnnouncement) => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/announcements/${idAnnouncement}/`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) throw new Error('Error al borrar el aviso');
+
+            // Eliminar el aviso del estado local
+            setAvisos(avisos.filter((aviso) => aviso.id !== idAnnouncement));
+        } catch (error) {
+            console.error('Error al borrar el aviso:', error);
+        }
+    };
 
     return (
         <div>
@@ -81,7 +112,28 @@ const AdminDetalleGrupo = () => {
                     <p><strong>Horario:</strong> {grupo.schedule}</p>
                     <p><strong>Ubicación:</strong> {grupo.location}</p>
                     <p><strong>Cupo:</strong> {grupo.quota ? `${grupo.quota} personas` : 'Ilimitado'}</p>
+                    <div className='right'>
+                    <Link to={`/crear-aviso/${id}`} className="btn">Crear aviso</Link>
+                    </div>
                 </div>
+            </div>
+            {/* Mostrar los avisos del grupo */}
+            <div className="avisos">
+                <h2>Avisos del Grupo</h2>
+                {avisos.length > 0 ? (
+                    <ul className="lista-avisos">
+                        {avisos.map((aviso) => (
+                            <li key={aviso.id} className="aviso-item">
+                                <p><strong>Descripción:</strong> {aviso.description}</p>
+                                <p><strong>Creado el:</strong> {aviso.creation_date}</p>
+                                <p><strong>Expira el:</strong> {aviso.expiration_date}</p>
+                                <Link className='btn-red' onClick={() => BorrarAviso(aviso.id)}>Borrar aviso</Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No hay avisos para este grupo.</p>
+                )}
             </div>
             {/* Mostrar la lista de usuarios inscritos */}
             <div className="usuarios-inscritos-container">

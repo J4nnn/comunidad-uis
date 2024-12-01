@@ -1,11 +1,70 @@
+/* AcercaDe.css */
 .align-center {
-    display: flex;
-    flex-direction: column; /* Esto es opcional dependiendo de si quieres alinear en columna o fila */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;     /* Centra verticalmente */
-    background-color: rgb(230, 253, 223);
-    padding: 10px;
-    margin: 5%;
-    margin-top: 30px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  gap: 3px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.grupo-imagen {
+  width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.columns p {
+  text-align: justify;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 1px;
+}
+
+.columns ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 1px;
+}
+
+.columns ul li {
+  font-size: 18px;
+  color: #555;
+}
+
+.columns h4 {
+  font-size: 20px;
+  margin-bottom: 1px;
+  color: #444;
+}
+
+/* Media queries */
+@media (max-width: 800px) {
+  .grupo-imagen {
+    width: 100%;
   }
+}
+
+@media (max-width: 1000px) {
+  .align-center {
+    flex-direction: column;
+  }
+  
+  .columns {
+    align-items: center;
+    text-align: center;
+  }
+}

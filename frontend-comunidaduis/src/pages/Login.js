@@ -8,11 +8,16 @@ const Login = () => {
   // Estado para el tipo de usuario
   const [userType, setUserType] = useState('Estudiante1');
   // Estado para los datos del usuario
-  const [usuario, setUsuario] = useState("");
+  const [usuario, setUsuario] = useState({ email: "", password: "", name: "" });
 
   // Función para obtener los valores predeterminados del usuario según el tipo
   const fetchUserData = async (type) => {
-    const userId = type === 'Estudiante1' ? 1 : 2; // Determinar el ID del usuario según el tipo
+    const userMapping = {
+      Estudiante1: 1,
+      Estudiante2: 2,
+      Estudiante3: 4,
+    };
+    const userId = userMapping[type];
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/users/${userId}/`);
       if (!response.ok) {
@@ -111,6 +116,7 @@ const Login = () => {
               >
                 <option value="Estudiante1">Estudiante1</option>
                 <option value="Estudiante2">Estudiante2</option>
+                <option value="Estudiante3">Estudiante3</option>
               </select>
             </div>
             <div className="login-field">

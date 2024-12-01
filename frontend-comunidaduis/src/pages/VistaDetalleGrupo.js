@@ -10,6 +10,7 @@ const VistaDetalleGrupo = () => {
   const [grupo, setGrupo] = useState("");
   const userId = parseInt(sessionStorage.getItem('id_user'), 10); // Obtener el ID del usuario desde sessionStorage
   const [inscrito, setInscrito] = useState(false); // Estado para manejar si el usuario ya está inscrito
+  const [avisos, setAvisos] = useState([]); // Estado para almacenar los avisos del grupo
 
   useEffect(() => {
 
@@ -51,8 +52,25 @@ const VistaDetalleGrupo = () => {
       }
     };
 
+    const fetchAvisos = async () => {
+      try {
+          const response = await fetch('http://127.0.0.1:8000/api/announcements/');
+          if (!response.ok) {
+              throw new Error('Error al obtener los avisos');
+          }
+          const data = await response.json();
+
+          // Filtrar los avisos que corresponden al grupo actual
+          const avisosDelGrupo = data.filter((aviso) => aviso.group === parseInt(id));
+          setAvisos(avisosDelGrupo);
+      } catch (e) {
+          console.log('Error al obtener los avisos del grupo');
+      }
+  };
+
     fetchGrupo();
     verificarInscripcion();
+    fetchAvisos();
   }, [id, userId]);
 
   const handleInscribirse = async () => {
@@ -107,7 +125,25 @@ const VistaDetalleGrupo = () => {
             <p className="inscripcion-exitosa">¡Ya estás inscrito en este grupo!</p>
           )}
         </div>
+        
       </div>
+      {/* Mostrar los avisos del grupo */}
+      <div className="avisos">
+                <h2>Avisos del Grupo</h2>
+                {avisos.length > 0 ? (
+                    <ul className="lista-avisos">
+                        {avisos.map((aviso) => (
+                            <li key={aviso.id} className="aviso-item">
+                                <p><strong>Descripción:</strong> {aviso.description}</p>
+                                <p><strong>Creado el:</strong> {aviso.creation_date}</p>
+                                <p><strong>Expira el:</strong> {aviso.expiration_date}</p>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No hay avisos para este grupo.</p>
+                )}
+            </div>
     </div>
   );
 };
