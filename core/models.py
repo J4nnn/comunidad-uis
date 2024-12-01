@@ -36,7 +36,7 @@ class Group(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} - {self.creator}'
 
 class UserGroup(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,7 +48,6 @@ class UserGroup(models.Model):
 class Announcement(models.Model):
     publisher = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    cover = models.ImageField()
     description = models.TextField()
     creation_date = models.CharField()
     expiration_date = models.CharField()
