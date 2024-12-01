@@ -32,17 +32,17 @@ All of this technologies were used in the development of the project and are nee
     1. Open your `settings.py` file and find the `DATABASES` section. Modify the default configuration to look like this:
 
    ```python
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': 'your_database_name',
-           'USER': 'your_database_user',
-           'PASSWORD': 'your_database_password',
-           'HOST': 'localhost',
-           'PORT': '5432',  # Default PostgreSQL port
-       }
-   }```
-	
+   	DATABASES = {
+  		    'default': {
+       	    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       	    'NAME': 'your_database_name',
+       	    'USER': 'your_database_user',
+       	    'PASSWORD': 'your_database_password',
+       	    'HOST': 'localhost',
+       	    'PORT': '5432',  # Default PostgreSQL port
+       	}
+	   }```
+
 	2. Create the database (if it doesn't exist):
 		- Before running migrations, you need to create the database in PostgreSQL.
 You can do this using the `psql` command-line tool, a GUI like pgAdmin, or other database management tools.
