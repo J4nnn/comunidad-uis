@@ -28,7 +28,8 @@ All of this technologies were used in the development of the project and are nee
 1. Clone the repository: `git clone https://github.com/J4nnn/comunidad-uis.git`
 2. Install Backend dependencies: `cd backend && pip install -r requirements.txt`
 3. Install Frontend dependencies: `cd frontend-comunidaduis && npm install`
-1. Open your `settings.py` file and find the `DATABASES` section. Modify the default configuration to look like this:
+4. Set up the database:
+    1. Open your `settings.py` file and find the `DATABASES` section. Modify the default configuration to look like this:
 
    ```python
    DATABASES = {
@@ -40,7 +41,8 @@ All of this technologies were used in the development of the project and are nee
            'HOST': 'localhost',
            'PORT': '5432',  # Default PostgreSQL port
        }
-   }
+   }```
+	
 	2. Create the database (if it doesn't exist):
 		- Before running migrations, you need to create the database in PostgreSQL.
 You can do this using the `psql` command-line tool, a GUI like pgAdmin, or other database management tools.
