@@ -42,10 +42,10 @@ All of this technologies were used in the development of the project and are nee
        	}
 	   }
 
-	2. Create the database (if it doesn't exist):
-		- Before running migrations, you need to create the database in PostgreSQL.
+5. Create the database (if it doesn't exist):
+- Before running migrations, you need to create the database in PostgreSQL.
 You can do this using the `psql` command-line tool, a GUI like pgAdmin, or other database management tools.
-5. Run migrations, this creates the tables in the database: `python manage.py makemigrations && python manage.py migrate`
+6. Run migrations, this creates the tables in the database: `python manage.py makemigrations && python manage.py migrate`
 
 
 # Guia para despliegue (local)
