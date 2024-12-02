@@ -15,7 +15,7 @@ const Login = () => {
     const userMapping = {
       Estudiante1: 1,
       Estudiante2: 2,
-      Estudiante3: 4,
+      Estudiante3: 3,
     };
     const userId = userMapping[type];
     try {
