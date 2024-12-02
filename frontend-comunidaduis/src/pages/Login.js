@@ -16,6 +16,21 @@ const Login = () => {
       Estudiante1: 1,
       Estudiante2: 2,
       Estudiante3: 3,
+      Estudiante4: 4,
+      Estudiante5: 5,
+      Estudiante6: 6,
+      Estudiante7: 7,
+      Estudiante8: 8,
+      Estudiante9: 9,
+      Estudiante10: 10,
+      Estudiante11: 11,
+      Estudiante12: 12,
+      Estudiante13: 13,
+      Estudiante14: 14,
+      Estudiante15: 15,
+      Estudiante16: 16,
+      Estudiante17: 17,
+      Estudiante18: 18,
     };
     const userId = userMapping[type];
     try {
@@ -66,7 +81,7 @@ const Login = () => {
     };
 
     if (userType === "Estudiante1") {
-      console.log("Este es Janner", data);
+      console.log("Este es Janer", data);
     } else {
       console.log("Esta es Fabi", data);
     }
@@ -110,13 +125,28 @@ const Login = () => {
             <div className="login-field">
               <label htmlFor="userType">Tipo de Usuario:</label>
               <select
-                id="userType"
-                value={userType}
-                onChange={(e) => setUserType(e.target.value)}
+                  id="userType"
+                  value={userType}
+                  onChange={(e) => setUserType(e.target.value)}
               >
                 <option value="Estudiante1">Estudiante1</option>
                 <option value="Estudiante2">Estudiante2</option>
                 <option value="Estudiante3">Estudiante3</option>
+                <option value="Estudiante4">Estudiante4</option>
+                <option value="Estudiante5">Estudiante5</option>
+                <option value="Estudiante6">Estudiante6</option>
+                <option value="Estudiante7">Estudiante7</option>
+                <option value="Estudiante8">Estudiante8</option>
+                <option value="Estudiante9">Estudiante9</option>
+                <option value="Estudiante10">Estudiante10</option>
+                <option value="Estudiante11">Estudiante11</option>
+                <option value="Estudiante12">Estudiante12</option>
+                <option value="Estudiante13">Estudiante13</option>
+                <option value="Estudiante14">Estudiante14</option>
+                <option value="Estudiante15">Estudiante15</option>
+                <option value="Estudiante16">Estudiante16</option>
+                <option value="Estudiante17">Estudiante17</option>
+                <option value="Estudiante18">Estudiante18</option>
               </select>
             </div>
             <div className="login-field">

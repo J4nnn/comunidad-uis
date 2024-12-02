@@ -67,7 +67,7 @@ class UserGroupView(viewsets.ModelViewSet):
         group_id = serializer.validated_data['group'].id
         group = Group.objects.get(pk=group_id)
 
-        if group.quota is not None and (group.usergroup_set.count() + 1) >= group.quota:
+        if group.quota is not None and (group.usergroup_set.count()) >= group.quota:
             return Response({"error": "Límite de miembros alcanzado"}, status=status.HTTP_400_BAD_REQUEST)
 
         self.perform_create(serializer)
