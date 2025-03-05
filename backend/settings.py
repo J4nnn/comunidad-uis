@@ -94,6 +94,13 @@ DATABASES = {
         'PASSWORD': 'MyUser',
         'HOST': 'localhost',
         'PORT': '5432',
+    },
+    'test': {
+        'NAME': 'test',
+        'USER': 'j4nn',
+        'PASSWORD': 'MyUser',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
