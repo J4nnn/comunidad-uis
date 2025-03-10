@@ -33,4 +33,3 @@ class GroupCreationForm(forms.ModelForm):
         """
         cleaned_data = super(GroupCreationForm, self).clean()
         return cleaned_data
-
