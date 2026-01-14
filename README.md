@@ -1,63 +1,36 @@
-# PROJECT TITLE: ComunidadUIS
-## PURPOSE OF PROJECT
-"ComunidadUIS" is a platform designed to centralize and facilitate access to recreational groups at the Industrial University of Santander. Its purpose is to provide a space where members of the UIS community can discover groups aligned with their interests, join them, participate in their scheduled activities, and connect with people who share their interests. Additionally, it seeks to promote well-being and balance between academic life and personal enjoyment, contributing to a more enriching and manageable university experience.
+# ComunidadUIS
+Platform for discovering, creating, and joining recreational groups at Universidad Industrial de Santander (UIS).
 
-## VERSION: 1.0
-## HOW TO START THIS PROJECT:
-All of this technologies were used in the development of the project and are needed to start it.
+## Repository layout
+- `backend/` – Django + DRF backend  
+  - `manage.py`, `requirements.txt`
+  - `config/` – Django project config (`settings.py`, `urls.py`, `wsgi.py`, `asgi.py`)
+  - `core/` – app with models (`Faculty`, `School`, `User`, `Group`, `UserGroup`, `Announcement`), serializers, viewsets, permissions
+  - `data/` – sample fixtures (`db.json`, `db1.json`)
+  - `docs/` – API schema (`schema.yaml`)
+- `frontend/` – React app (CRA + react-router)
+- `docs/` – auxiliary materials (diagrams, BlueJ implementation)
 
-- Technologies used in the development of the project:
-	- React
-	- Django
-	- Django Rest Framework
-	- PostgreSQL
-	- Git
-- Technologies needed to start the project:
-	- Node.js
-	- NPM
-	- Python
-	- Pip
-	- PostgreSQL
+## Getting started
+### Backend
+1) `cd backend`  
+2) Create/activate your virtualenv.  
+3) `pip install -r requirements.txt`  
+4) Update database credentials in `config/settings.py` (section `DATABASES`, PostgreSQL by default).  
+5) Create the database in PostgreSQL.  
+6) `python manage.py makemigrations && python manage.py migrate`  
+7) (Optional) Load sample data: `python manage.py loaddata data/db.json`  
+8) Run: `python manage.py runserver` → http://127.0.0.1:8000/ (Swagger: http://127.0.0.1:8000/api/schema/swagger-ui/)
 
-## AUTHORS:
+### Frontend
+1) `cd frontend`  
+2) `npm install`  
+3) `npm start` → http://localhost:3000
+
+## Tech stack
+- Frontend: React, react-router-dom, Create React App
+- Backend: Django, Django REST Framework, drf-spectacular, PostgreSQL
+
+## Authors
 - Fabiana Acuña López
 - Janer Alberto Vega Jacome
-
-## USER INSTRUCTIONS: 
-### Instrucciones para hacer funcionar el proyecto (traducir)
-1. Clone the repository: `git clone https://github.com/J4nnn/comunidad-uis.git`
-2. Install Backend dependencies: `cd backend && pip install -r requirements.txt`
-3. Install Frontend dependencies: `cd frontend-comunidaduis && npm install`
-4. Set up the database:
-    1. Open your `settings.py` file and find the `DATABASES` section. Modify the default configuration to look like this:
-   ```python
-   	DATABASES = {
-  		    'default': {
-       	    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       	    'NAME': 'your_database_name', # The name you gave your database when you created it.
-       	    'USER': 'your_database_user', # The username with access to the database.
-       	    'PASSWORD': 'your_database_password', # The password for that user.
-       	    'HOST': 'localhost',
-       	    'PORT': '5432',  # Default PostgreSQL port
-       	}
-	   }
-
-5. Create the database (if it doesn't exist):
-- Before running migrations, you need to create the database in PostgreSQL.
-You can do this using the `psql` command-line tool, a GUI like pgAdmin, or other database management tools.
-6. Run migrations, this creates the tables in the database: `python manage.py makemigrations && python manage.py migrate`
-
-
-# Guia para despliegue (local)
-
-1. Backend
-
-- python manage.py runserver
-- http://127.0.0.1:8000/api/schema/swagger-ui/
-
-2. Frontend
-
-- npm start
-- http://localhost:3000
-
-New line to try something
